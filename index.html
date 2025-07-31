@@ -3,510 +3,1092 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bitan Hait - Visual Storyteller</title>
+    <title>Bitan Hait | Macro & Nature Photography</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #FF6B6B;
-            --secondary: #4ECDC4;
-            --accent: #FFE66D;
-            --dark: #2D3047;
-            --light: #F8F9FA;
+            --primary-color: #1e3a1e;
+            --secondary-color: #3d6b3d;
+            --accent-color: #6da06d;
+            --text-color: #f0f7f0;
+            --bg-color: #0c160c;
+            --dark-green: #142414;
+            --light-accent: #a8c5a8;
+            --card-bg: rgba(30, 58, 30, 0.6);
         }
-
-        body {
-            font-family: Arial, sans-serif;
+        
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-            scroll-behavior: smooth;
+            box-sizing: border-box;
         }
-
-        header {
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            background: linear-gradient(to right, #a8e063, #56ab2f);
-            padding: 10px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav a {
-            color: #1300c0;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #ffcc00;
-        }
-
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-            gap: 15px;
-        }
-
-        .gallery-item {
-            width: 250px;
-            height: 250px;
-            overflow: hidden;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            user-select: none;
-            -webkit-user-drag: none;
-            -khtml-user-drag: none;
-            -moz-user-select: none;
-            -o-user-select: none;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            border-color: #333;
-        }
-
-        .about-section {
-            padding: 40px 20px;
-            text-align: center;
-            background: linear-gradient(to bottom, #f0f2f0, #e0e0e0);
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-section h2 {
-            margin-bottom: 20px;
-            color: #3498db;
-        }
-
-        .about-section p {
-            color: #555;
-            font-size: 1.1em;
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto 15px;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(26, 42, 26, 0.5) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(26, 42, 26, 0.5) 0%, transparent 20%);
         }
-
-        footer {
-            background: linear-gradient(to right, #8e2de2, #4a148c);
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .gallery-item, .about-section {
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .popup {
-            display: none;
+        
+        header {
+            padding: 20px 0;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
+            background-color: rgba(15, 26, 15, 0.95);
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 15px 0;
+            background-color: rgba(15, 26, 15, 0.98);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            z-index: 1000;
         }
-
-        .popup-content {
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo i {
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
             position: relative;
-            max-width: 90%;
-            max-height: 90%;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
+            padding: 5px 0;
         }
-
-        .popup-content img {
-            max-width: 100%;
-            max-height: 80vh;
-            border-radius: 10px;
-            user-select: none;
-            -webkit-user-drag: none;
-            -khtml-user-drag: none;
-            -moz-user-select: none;
-            -o-user-select: none;
-        }
-
-        .close-btn {
+        
+        .nav-links a:after {
+            content: '';
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #333;
-            color: #fff;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after,
+        .nav-links a.active:after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
             border: none;
-            padding: 10px 15px;
-            border-radius: 50%;
+            color: var(--text-color);
+            font-size: 1.5rem;
             cursor: pointer;
-            font-size: 18px;
         }
-
-        .close-btn:hover {
-            background-color: #555;
+        
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
         }
-
-        .view-count {
+        
+        .hero::before {
+            content: '';
             position: absolute;
-            bottom: 5px;
-            left: 5px;
-            color: white;
-            font-size: 12px;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 2px 5px;
-            border-radius: 4px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(93, 140, 93, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(93, 140, 93, 0.1) 0%, transparent 25%);
+            z-index: -1;
         }
-
-        .gallery-item:hover .view-count {
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            color: var(--accent-color);
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            background-color: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--accent-color);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            color: var(--dark-green);
+        }
+        
+        .btn:hover:before {
+            width: 100%;
+        }
+        
+        .portfolio {
+            padding: 100px 0 50px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            font-weight: 300;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 0 10px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        
+        .gallery-item.visible {
+            transform: translateY(0);
             opacity: 1;
         }
-
-        #website-views {
-            color: white;
-            font-size: 16px;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: rgba(0, 0, 0, 0.7);
-            margin-top: 20px;
-            text-align: center;
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-
-        .download-btn {
-            background-color: #4CAF50;
-            color: rgb(255, 255, 255);
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-            transition: background-color 0.3s ease;
+        
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        
+        .gallery-item .info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item:hover .info {
+            opacity: 1;
+        }
+        
+        .gallery-item h3 {
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+        
+        .gallery-item p {
+            font-size: 0.9rem;
+            color: var(--light-accent);
+        }
+        
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--bg-color), var(--dark-green));
+            position: relative;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 100px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: center;       
+            aspect-ratio: 3/4;
+            background: linear-gradient(45deg, var(--primary-color), var(--dark-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-accent);
+            font-size: 1.2rem;
+        }
+        
+        .about h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+        
+        .about p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(141, 179, 141, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+        
+        .contact-details h4 {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .contact-details p, .contact-details a {
+            color: var(--light-accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-details a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        .contact {
+            padding: 100px 0;
+            background: var(--dark-green);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(26, 42, 26, 0.6);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
             display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(141, 179, 141, 0.3);
+            border-radius: 6px;
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: var(--accent-color);
+            color: var(--dark-green);
+            border: none;
+            padding: 14px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: var(--light-accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(141, 179, 141, 0.3);
+        }
+        
+        footer {
+            background: var(--primary-color);
+            padding: 60px 0 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .footer-logo {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .footer-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
-
-        .download-btn:hover {
-            background-color: #367c39;
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 30px 0;
+            gap: 20px;
         }
-
-        @media (max-width: 768px) {
-            .gallery-item {
-                width: 150px;
-                height: 150px;
+        
+        .social-links li {
+            margin: 0;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            font-size: 1.4rem;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--dark-green);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            font-size: 0.95rem;
+            color: var(--light-accent);
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-
-        @media (max-width: 480px) {
-            .gallery-item {
-                width: 120px;
-                height: 120px;
+        
+        /* Mobile styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
             }
             
-            nav a {
-                margin: 0 10px;
-                font-size: 14px;
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+                max-width: 500px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--dark-green);
+                width: 100%;
+                height: calc(100vh - 70px);
+                padding-top: 40px;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 0 0 30px 0;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Bitan Hait's Portfolio</h1>
-        <p>Welcome to my photography portfolio. Explore my work and enjoy the beauty of each moment captured through my lens.</p>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-camera"></i>
+                    <span>Bitan Hait</span>
+                </a>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <nav>
-        <a href="#gallery">Gallery</a>
-        <a href="#about">About</a>
-    </nav>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Exploring Nature's Tiny Wonders</h1>
+            <p>Macro & Nature Photography by Bitan Hait</p>
+            <a href="#portfolio" class="btn">View Portfolio</a>
+        </div>
+    </section>
 
-    <div class="gallery" id="gallery">
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,w_200,g_face/v1742747342/all%20photos/wzfvlxckqimemj5lvvjc.jpg', 'photo1')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742747342/all%20photos/wzfvlxckqimemj5lvvjc.jpg" alt="Photo 1">
-            
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="gallery">
+                <!-- Gallery items with your Cloudinary images -->
+                <div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_1_-_s1mesr" alt="Cactus Close-up" loading="lazy">
+    <div class="info">
+        <h3>Cactus Close-up</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_2_fjblah" alt="Red Bloom" loading="lazy">
+    <div class="info">
+        <h3>Red Bloom</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_3_p2ew1i" alt="White Petals" loading="lazy">
+    <div class="info">
+        <h3>White Petals</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_4_u7c8dq" alt="Divine Display" loading="lazy">
+    <div class="info">
+        <h3>Divine Display</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_5_-_enjngv" alt="Flower Bud" loading="lazy">
+    <div class="info">
+        <h3>Flower Bud</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_6_ohf1yc" alt="Green Butterfly" loading="lazy">
+    <div class="info">
+        <h3>Green Butterfly</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_7_tuxzyb" alt="Dew Line" loading="lazy">
+    <div class="info">
+        <h3>Dew Line</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_8_-_qcimfh" alt="White Blossom" loading="lazy">
+    <div class="info">
+        <h3>White Blossom</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_9_gdcqtf" alt="Orange Bloom" loading="lazy">
+    <div class="info">
+        <h3>Orange Bloom</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_10_zsyivg" alt="Curious Kitten" loading="lazy">
+    <div class="info">
+        <h3>Curious Kitten</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_11_gkh5cy" alt="Watchful Cat" loading="lazy">
+    <div class="info">
+        <h3>Watchful Cat</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_12_i6mjrk" alt="Alert Puppy" loading="lazy">
+    <div class="info">
+        <h3>Alert Puppy</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_13_cxkub1" alt="Street Dogs" loading="lazy">
+    <div class="info">
+        <h3>Street Dogs</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_14_upctxt" alt="Yellow Grass" loading="lazy">
+    <div class="info">
+        <h3>Yellow Grass</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_15_-_too0io" alt="Resting Insect" loading="lazy">
+    <div class="info">
+        <h3>Resting Insect</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_16_ti1cha" alt="Red Leaf" loading="lazy">
+    <div class="info">
+        <h3>Red Leaf</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_17_i8pqdq" alt="Red Flowers" loading="lazy">
+    <div class="info">
+        <h3>Red Flowers</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_18_e1rg2u" alt="Sunset Silhouette" loading="lazy">
+    <div class="info">
+        <h3>Sunset Silhouette</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_19_o7drvo" alt="Doorway Cat" loading="lazy">
+    <div class="info">
+        <h3>Doorway Cat</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_20_p1k7yj" alt="White Orchid" loading="lazy">
+    <div class="info">
+        <h3>White Orchid</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_21_rnaaxe" alt="Leaf Sprout" loading="lazy">
+    <div class="info">
+        <h3>Leaf Sprout</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_22_-_rwuwe3" alt="Blooming Hibiscus" loading="lazy">
+    <div class="info">
+        <h3>Blooming Hibiscus</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_23_i4m9cw" alt="Purple Petal" loading="lazy">
+    <div class="info">
+        <h3>Purple Petal</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_24_rwmq0o" alt="Leaf Bug" loading="lazy">
+    <div class="info">
+        <h3>Leaf Bug</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_25_ubwfu3" alt="Mating Bugs" loading="lazy">
+    <div class="info">
+        <h3>Mating Bugs</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_26_uij0fm" alt="Yellow Flower" loading="lazy">
+    <div class="info">
+        <h3>Yellow Flower</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_27_wtuohw" alt="Leaf Cluster" loading="lazy">
+    <div class="info">
+        <h3>Leaf Cluster</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_28_-_ha9kbc" alt="Evening Light" loading="lazy">
+    <div class="info">
+        <h3>Evening Light</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_29_dykack" alt="Coin Close-up" loading="lazy">
+    <div class="info">
+        <h3>Coin Close-up</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_30_wx71jc" alt="Golden Bloom" loading="lazy">
+    <div class="info">
+        <h3>Golden Bloom</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_31_nphoaj" alt="Decorative Bowl" loading="lazy">
+    <div class="info">
+        <h3>Decorative Bowl</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_32_-_pocrmy" alt="Crystal Globe" loading="lazy">
+    <div class="info">
+        <h3>Crystal Globe</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_33_cqgd4t" alt="Sunset Fingers" loading="lazy">
+    <div class="info">
+        <h3>Sunset Fingers</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_34_pb0oie" alt="Fallen Blossom" loading="lazy">
+    <div class="info">
+        <h3>Fallen Blossom</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+<div class="gallery-item">
+    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,h_1500,w_1200/nature_35_qfuql2" alt="Golden Morning" loading="lazy">
+    <div class="info">
+        <h3>Golden Morning</h3>
+        <p>Nature | Macro</p>
+    </div>
+</div>
+            </div>
         </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/c_thumb,w_200,g_face/v1742747332/all%20photos/lpryq65qrtbrmafkxky0.jpg', 'photo2')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742747332/all%20photos/lpryq65qrtbrmafkxky0.jpg" alt="Photo 2">
-           
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626580/ulvobl50bwqoo2zx57qw.jpg', 'photo3')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626580/ulvobl50bwqoo2zx57qw.jpg" alt="Photo 3">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626579/lpmziedqqc20xhwyh3dt.jpg', 'photo4')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626579/lpmziedqqc20xhwyh3dt.jpg" alt="Photo 4">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626568/rvmm09qm3hl2fvekgzqx.jpg', 'photo5')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626568/rvmm09qm3hl2fvekgzqx.jpg" alt="Photo 5">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626563/vp3e1sevldmkvqwk47hi.jpg', 'photo6')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626563/vp3e1sevldmkvqwk47hi.jpg" alt="Photo 6">
-           
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626546/uo3silojwhgydrgoqnek.jpg', 'photo7')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626546/uo3silojwhgydrgoqnek.jpg" alt="Photo 7">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626537/hfgfewtvg1en4nyoofdf.jpg', 'photo8')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626537/hfgfewtvg1en4nyoofdf.jpg" alt="Photo 8">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626530/yppynp1sxgyxssyy6y9g.jpg', 'photo9')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626530/yppynp1sxgyxssyy6y9g.jpg" alt="Photo 9">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626506/hbyya1ok3kmbi2qu1iin.jpg', 'photo10')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626506/hbyya1ok3kmbi2qu1iin.jpg" alt="Photo 10">
-            <div class="view-count" id="photo10-views">Views: 0</div>
-        </div>
+    </section>
 
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626493/szt8klmspnvoz0wwxbgp.jpg', 'photo11')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626493/szt8klmspnvoz0wwxbgp.jpg" alt="Photo 11">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626484/bhwptt0vj7cw5fnq7z6o.jpg', 'photo12')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626484/bhwptt0vj7cw5fnq7z6o.jpg" alt="Photo 12">
-            
-        </div>
-         <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626484/ton9r9wyaoals4fub7td.jpg', 'photo13')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626484/ton9r9wyaoals4fub7td.jpg" alt="Photo 13">
-            <div class="view-count" id="photo13-views">Views: 0</div>
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626480/h8rlaxhjsxiadv1ohdjr.jpg', 'photo14')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626480/h8rlaxhjsxiadv1ohdjr.jpg" alt="Photo 14">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626479/hcw6edgsnxjrdc7r8cn3.jpg', 'photo15')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626479/hcw6edgsnxjrdc7r8cn3.jpg" alt="Photo 15">
-           
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626472/mxwfxhs1epwahv6qmnsd.jpg', 'photo16')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626472/mxwfxhs1epwahv6qmnsd.jpg" alt="Photo 16">
-           
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626465/xtucovkyzkzbvabl4hlv.jpg', 'photo17')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626465/xtucovkyzkzbvabl4hlv.jpg" alt="Photo 17">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626465/adqsn0bibs1roaeciksy.jpg', 'photo18')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626465/adqsn0bibs1roaeciksy.jpg" alt="Photo 18">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v174626462/cgmfuxin3u3f8wkirdfr.jpg', 'photo19')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v174626462/cgmfuxin3u3f8wkirdfr.jpg" alt="Photo 19">
-           
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626462/ifd3qmctdcv3v3mkr0fm.jpg', 'photo20')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626462/ifd3qmctdcv3v3mkr0fm.jpg" alt="Photo 20">
-         
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626453/l8wvtkgg2aqaasxrnzpq.jpg', 'photo21')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626453/l8wvtkgg2aqaasxrnzpq.jpg" alt="Photo 21">
-         
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626449/tdqtrl2hyfcplff4joao.jpg', 'photo22')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626449/tdqtrl2hyfcplff4joao.jpg" alt="Photo 22">
-           
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626444/xkx4ps0xphtbvpv8prh2.jpg', 'photo23')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626444/xkx4ps0xphtbvpv8prh2.jpg" alt="Photo 23">
-           
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626437/gv3ej4ob82gzhevbdqvk.jpg', 'photo24')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626437/gv3ej4ob82gzhevbdqvk.jpg" alt="Photo 24">
-           
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626435/lv4i61c1yiu7inyuhwnu.jpg', 'photo25')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626435/lv4i61c1yiu7inyuhwnu.jpg" alt="Photo 25">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626431/lvoehnglglenfi7ltu5z.jpg', 'photo26')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626431/lvoehnglglenfi7ltu5z.jpg" alt="Photo 26">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626430/dehdijtxfrl0kflea5gu.jpg', 'photo27')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626430/dehdijtxfrl0kflea5gu.jpg" alt="Photo 27">
-           
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626426/hbvhbjk5hbt4ijnh6spz.jpg', 'photo28')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626426/hbvhbjk5hbt4ijnh6spz.jpg" alt="Photo 28">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626426/kp9gllby3ngwldt1kefj.jpg', 'photo29')">
-            <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742626426/kp9gllby3ngwldt1kefj.jpg" alt="Photo 29">
-         
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742623604/vcs1mrzlfb5iuapvb01l.jpg', 'photo30')">
-                <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742623604/vcs1mrzlfb5iuapvb01l.jpg" alt="Photo 30">
-              
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742623603/gvy52dqxxwppyhbovmmt.jpg', 'photo31')">
-                <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742623603/gvy52dqxxwppyhbovmmt.jpg" alt="Photo 31">
-            
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742623602/w3ainszquq2rtbi10ixh.jpg', 'photo32')">
-                <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742623602/w3ainszquq2rtbi10ixh.jpg" alt="Photo 32">
-              
-        </div>
-        <div class="gallery-item" onclick="openPopup('https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742623596/vszioyb1dwshqhqhaxbc.jpg', 'photo33')">
-                <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1742623596/vszioyb1dwshqhqhaxbc.jpg" alt="Photo 33">
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Capturing the Unseen Beauty of Nature</h2>
+                    <p>Hello, I'm Bitan Hait, a passionate nature and macro photographer based in Dankuni, West Bengal, India. My journey in photography began as a way to connect with the natural world and reveal its hidden wonders.</p>
+                    <p>Through my lens, I strive to showcase the intricate details and breathtaking beauty that often go unnoticed in our everyday lives. From the delicate patterns on a butterfly's wing to the complex structure of a leaf, I find endless inspiration in nature's smallest creations.</p>
+                    <p>My work has been featured in several local exhibitions, and I continue to explore new techniques to capture the essence of the natural world. When I'm not behind the camera, you can find me exploring the forests and fields of West Bengal, always searching for my next subject.</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Name</h4>
+                                <p>Bitan Hait</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="mailto:bitanhait@gmail.com">bitanhait@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Dankuni, West Bengal, India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
+                <div class="about-image">
+                    <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/c_fill,w_752,h_940,g_auto/v1753920330/IMG_2381-2_npay4p.jpg" 
+                         alt="Bitan Hait" 
+                         loading="lazy">
+                    <div class="info">
+                        <h3>Bitan Hait</h3>
+                        <p>Nature & Macro Photographer</p>
+                    </div>
+                    <!-- In a real portfolio, this would be an image of the photographer -->
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="about-section" id="about">
-        <h2>About Me</h2>
-        <p>
-            Greetings! I'm Bitan Hait, a passionate visual storyteller with a camera in hand and an insatiable curiosity for capturing the world's breathtaking beauty. Photography is more than just a profession for me; it's a profound love affair with light, shadow, and the fleeting moments that compose the grand tapestry of life.
-        </p>
-        <p>
-            My lens is my paintbrush, and each photograph is a stroke of emotion, a whisper of a story, a symphony of colors. I specialize in weaving narratives through landscapes that evoke a sense of wanderlust, portraits that reveal the raw essence of the human spirit, and event photography that freezes time, preserving memories for eternity.
-        </p>
-        <p>
-            With every click of the shutter, I strive to go beyond the surface, capturing not just what is seen, but also what is felt. I believe that every moment, whether grand or intimate, holds a unique magic, and it is my privilege to encapsulate that magic within the frame.
-        </p>
-        <p>
-            Join me on this visual journey, and allow my photographs to transport you to distant lands, introduce you to captivating souls, and immerse you in the beauty that surrounds us.
-        </p>
-    </div>
-
-    <div id="website-views">Total Website Views: 0</div>
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-form">
+                <a href="https://forms.gle/VdRbpmUQ7bh8Nq6X8"><button type="submit" class="submit-btn">Send Message</button></a>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2025 Bitan Hait's Portfolio. All rights reserved.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3>Bitan Hait Photography</h3>
+                <p class="footer-text">Specializing in capturing the intricate beauty of nature through macro photography. Based in Dankuni, West Bengal, India.</p>
+                
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                    <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+                </ul>
+                
+                <div class="contact-info"> 
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <a href="mailto:bitanhait@gmail.com">bitanhait@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <p>Dankuni, West Bengal, India</p>
+                        </div>
+                    </div> 
+                </div>
+                
+                <div class="copyright">
+                    &copy; 2025 Bitan Hait Photography. All Rights Reserved.
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <div class="popup" id="popup">
-        <div class="popup-content">
-            <button class="close-btn" onclick="closePopup()">&times;</button>
-            <img id="popup-img" src="" alt="Popup Image">
-            <a id="download-link" href="#" download class="download-btn">Download Image</a>
-        </div>
-    </div>
-
     <script>
-        let viewCounts = {};
-        let totalViews = 0;
-
-        function openPopup(imageSrc, imageId) {
-            const popup = document.getElementById('popup');
-            const popupImg = document.getElementById('popup-img');
-            const downloadLink = document.getElementById('download-link');
-            popupImg.src = imageSrc;
-            downloadLink.href = imageSrc;
-            downloadLink.download = `image-${imageId}.jpg`;
-            popup.style.display = 'flex';
-
-            if (viewCounts[imageId]) {
-                viewCounts[imageId]++;
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
             } else {
-                viewCounts[imageId] = 1;
+                header.classList.remove('scrolled');
             }
-
-            const viewCountElement = document.getElementById(imageId + '-views');
-            if (viewCountElement) {
-                viewCountElement.textContent = `Views: ${viewCounts[imageId]}`;
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            const icon = this.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
-            localStorage.setItem('viewCounts', JSON.stringify(viewCounts));
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+        
+        // Gallery animation on scroll
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
+        
+        galleryItems.forEach(item => {
+            observer.observe(item);
+        });
+        
+        // Smooth scrolling function
+        function smoothScrollTo(target) {
+            const headerHeight = document.getElementById('header').offsetHeight;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const startPosition = window.pageYOffset;
+            const distance = targetPosition - startPosition - headerHeight;
+            const duration = 800; // milliseconds
+            let startTime = null;
+            
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const run = ease(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if (timeElapsed < duration) requestAnimationFrame(animation);
+            }
+            
+            // Easing function (easeInOutQuad)
+            function ease(t, b, c, d) {
+                t /= d/2;
+                if (t < 1) return c/2*t*t + b;
+                t--;
+                return -c/2 * (t*(t-2) - 1) + b;
+            }
+            
+            requestAnimationFrame(animation);
         }
-
-        function closePopup() {
-            const popup = document.getElementById('popup');
-            popup.style.display = 'none';
-        }
-
-        window.onclick = function (event) {
-            const popup = document.getElementById('popup');
-            if (event.target === popup) {
-                closePopup();
-            }
-        };
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        
+        // Apply smooth scrolling to all navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    // Calculate the position to scroll to
-                    const headerOffset = document.querySelector('header').offsetHeight + 
-                                        document.querySelector('nav').offsetHeight;
-                    const targetPosition = targetElement.getBoundingClientRect().top + 
-                                         window.pageYOffset - headerOffset;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Update URL without jumping
-                    history.pushState(null, null, targetId);
+                const target = document.querySelector(targetId);
+                if (target) {
+                    smoothScrollTo(target);
                 }
             });
         });
-
-        // Load view counts from local storage on page load
-        window.onload = function() {
-            const savedViewCounts = localStorage.getItem('viewCounts');
-            const savedTotalViews = localStorage.getItem('totalViews');
-
-            if (savedViewCounts) {
-                viewCounts = JSON.parse(savedViewCounts);
-                for (const imageId in viewCounts) {
-                    const viewCountElement = document.getElementById(imageId + '-views');
-                    if (viewCountElement) {
-                        viewCountElement.textContent = `Views: ${viewCounts[imageId]}`;
-                    }
-                }
-            }
-
-            if (savedTotalViews) {
-                totalViews = parseInt(savedTotalViews, 10);
-            }
-            totalViews++;
-            localStorage.setItem('totalViews', totalViews);
-
-            document.getElementById('website-views').textContent = `Total Website Views: ${totalViews}`;
-        };
     </script>
 </body>
 </html>
