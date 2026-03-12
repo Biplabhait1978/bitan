@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BITAN HAIT | Photographer & Visual Storyteller</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Libraries -->
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis for Smooth Scrolling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+    <!-- Three.js for WebGL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body class="loading">
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress"></div>
+
+    <!-- Cinematic Intro Loader -->
+    <div class="loader">
+        <canvas id="loader-particles"></canvas>
+        <div class="loader-content">
+            <h1 class="loader-logo">BITAN HAIT</h1>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+            <p class="loader-percentage">0%</p>
+        </div>
+    </div>
+
+    <!-- Audio Toggle -->
+    <button class="audio-toggle" aria-label="Toggle ambient sound">
+        <span class="audio-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path class="audio-waves" d="M15.54 8.46a5 5 0 0 1 0 7.07 M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+        </span>
+    </button>
+    <audio id="ambient-sound" loop preload="auto">
+        <!-- Will generate audio context in JS, or placeholder -->
+    </audio>
+
+    <!-- App Container -->
+    <main id="app">
+        <!-- Three.js Canvas Container (Fixed Background behind content) -->
+        <div id="webgl-container"></div>
+
+        <!-- Scrollable Content under Lenis -->
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+
+                <!-- Hero Section -->
+                <section class="hero" id="hero">
+                    <div class="hero-content">
+                        <div class="hero-title-wrapper">
+                            <h1 class="hero-title">BITAN HAIT</h1>
+                        </div>
+                        <div class="hero-subtitle-wrapper">
+                            <p class="hero-subtitle">Nature & Macro Photographer</p>
+                        </div>
+                        <div class="scroll-prompt">
+                            <span class="scroll-text">Explore Portfolio</span>
+                            <div class="scroll-line"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3D Interactive Gallery Section (Spacer for scroll duration) -->
+                <!-- The actual gallery is rendered in WebGL space -->
+                <section class="gallery-spacer" id="gallery">
+                    <div class="gallery-hint">
+                        <span class="hint-text">Scroll to explore • Click to expand</span>
+                    </div>
+                </section>
+
+                <!-- Featured Projects (Parallax Sections) -->
+                <section class="featured" id="featured">
+                    <div class="section-header">
+                        <h2 class="section-title">Featured Collections</h2>
+                    </div>
+
+                    <div class="project-list">
+                        <article class="project-item">
+                            <div class="project-image" data-speed="1.2">
+                                <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1753937625/nature_26_uij0fm.jpg"
+                                    alt="Nature" loading="lazy">
+                            </div>
+                            <div class="project-overlay"></div>
+                            <div class="project-info">
+                                <h3 class="project-title">NATURE</h3>
+                            </div>
+                        </article>
+
+                        <article class="project-item left-align">
+                            <div class="project-image" data-speed="1.1">
+                                <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1773297505/watermarked-_va3sze.jpg"
+                                    alt="Macro Wonders" loading="lazy">
+                            </div>
+                            <div class="project-overlay"></div>
+                            <div class="project-info">
+                                <h3 class="project-title">MACRO</h3>
+                            </div>
+                        </article>
+
+                        <article class="project-item">
+                            <div class="project-image" data-speed="1.2">
+                                <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1753937685/nature_33_cqgd4t.jpg"
+                                    alt="creative" loading="lazy">
+                            </div>
+                            <div class="project-overlay"></div>
+                            <div class="project-info">
+                                <h3 class="project-title">CREATIVE</h3>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section class="about" id="about">
+                    <div class="container">
+                        <div class="about-grid">
+                            <div class="about-image-wrap">
+                                <div class="image-reveal"></div>
+                                <img src="https://res.cloudinary.com/dfjqxfxgu/image/upload/v1773295998/IMG_7657_Edited_eprymf.jpg"
+                                    alt="Bitan Hait Photography" loading="lazy" class="about-img">
+                            </div>
+                            <div class="about-content">
+                                <h2 class="about-heading reveal-text">About me
+                                </h2>
+                                <div class="about-text fade-up">
+                                    <p>A passionate nature and macro photographer dedicated to capturing the hidden
+                                        beauty of the natural world.</p>
+                                    <p>Exploring the intricate details of flora and fauna, transforming brief moments
+                                        into lasting visual stories through a dedicated enthusiast's lens.</p>
+                                </div>
+
+                                <div class="experience fade-up">
+                                    <h3 class="exp-title">Journey & Highlights</h3>
+                                    <div class="exp-item">
+                                        <span class="exp-year">2025</span>
+                                        <span class="exp-role">Photo Contest Special Honored</span>
+                                    </div>
+                                    <div class="exp-item">
+                                        <span class="exp-year">2024</span>
+                                        <span class="exp-role">Nature Photo Contest Runner-up</span>
+                                    </div>
+                                    <div class="exp-item">
+                                        <span class="exp-year">2023</span>
+                                        <span class="exp-role">Started Mobile photography</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section class="contact" id="contact">
+                    <div class="container">
+                        <div class="contact-wrap">
+                            <h2 class="contact-title reveal-text">Let's Create</h2>
+                            <form class="contact-form fade-up" id="contactForm" onsubmit="event.preventDefault();">
+                                <div class="input-group">
+                                    <input type="text" id="name" required placeholder=" ">
+                                    <label for="name">Name</label>
+                                </div>
+                                <div class="input-group">
+                                    <input type="email" id="email" required placeholder=" ">
+                                    <label for="email">Email</label>
+                                </div>
+                                <div class="input-group">
+                                    <textarea id="message" required placeholder=" " rows="4"></textarea>
+                                    <label for="message">Project Details</label>
+                                </div>
+                                <button type="submit" class="submit-btn hover-target">
+                                    <span>Send Inquiry</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <footer class="footer fade-up">
+                            <div class="footer-col">
+                                <h4>Contact</h4>
+                                <a href="mailto:bitanhait@gmail.com"
+                                    class="hover-link hover-target">bitanhait@gmail.com</a>
+                                <p>Based in Hooghly, West Bengal, India</p>
+                            </div>
+                            <div class="footer-col">
+                                <h4>Socials</h4>
+                                <div class="social-links">
+                                    <a href="https://www.instagram.com/pixelbitan/"
+                                        class="hover-link hover-target">Instagram</a>
+                                    <a href="mailto:bitanhait@gmail.com" class="hover-link hover-target">Email</a>
+                                </div>
+                            </div>
+                            <div class="footer-col bottom">
+                                <p>&copy; 2026 Bitan Hait. All rights reserved.</p>
+                            </div>
+                        </footer>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Fullscreen Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-overlay"></div>
+        <button class="lightbox-close hover-target" aria-label="Close">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+        </button>
+        <div class="lightbox-content">
+            <div class="lightbox-img-container">
+                <img class="lightbox-img" src="" alt="Expanded View">
+                <div class="lightbox-loader"></div>
+            </div>
+            <div class="lightbox-metadata">
+                <h3 class="meta-title"></h3>
+                <div class="meta-details">
+                    <span class="meta-loc"></span>
+                    <span class="meta-cam"></span>
+                    <span class="meta-year"></span>
+                </div>
+            </div>
+
+            <div class="lightbox-nav">
+                <button class="nav-prev hover-target" aria-label="Previous">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button class="nav-next hover-target" aria-label="Next">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="threeScene.js"></script>
+    <script src="cloudinary.js"></script>
+    <script src="gallery.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
