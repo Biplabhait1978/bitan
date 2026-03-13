@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Bold repeating mandala tile with paisley and temple geometry -->
+  <defs>
+    <style>
+      .g { fill: none; stroke: #d4af37; }
+      .f { fill: #d4af37; }
+    </style>
+  </defs>
+
+  <!-- Outer ring -->
+  <circle cx="100" cy="100" r="90" class="g" stroke-width="2.5"/>
+  <!-- Mid ring dashes -->
+  <circle cx="100" cy="100" r="70" class="g" stroke-width="1.5" stroke-dasharray="8 6"/>
+  <!-- Inner ring -->
+  <circle cx="100" cy="100" r="50" class="g" stroke-width="2"/>
+  <!-- Small inner ring -->
+  <circle cx="100" cy="100" r="25" class="g" stroke-width="1.5"/>
+  <!-- Center dot -->
+  <circle cx="100" cy="100" r="6" class="f"/>
+
+  <!-- 8-petal lotus at center -->
+  <g transform="translate(100,100)">
+    <ellipse rx="18" ry="9" class="g" stroke-width="1.8" transform="rotate(0)   translate(0,-36)"/>
+    <ellipse rx="18" ry="9" class="g" stroke-width="1.8" transform="rotate(45)  translate(0,-36)"/>
+    <ellipse rx="18" ry="9" class="g" stroke-width="1.8" transform="rotate(90)  translate(0,-36)"/>
+    <ellipse rx="18" ry="9" class="g" stroke-width="1.8" transform="rotate(135) translate(0,-36)"/>
+    <ellipse rx="18" ry="9" class="g" stroke-width="1.8" transform="rotate(180) translate(0,-36)"/>
+    <ellipse rx="18" ry="9" class="g" stroke-width="1.8" transform="rotate(225) translate(0,-36)"/>
+    <ellipse rx="18" ry="9" class="g" stroke-width="1.8" transform="rotate(270) translate(0,-36)"/>
+    <ellipse rx="18" ry="9" class="g" stroke-width="1.8" transform="rotate(315) translate(0,-36)"/>
+  </g>
+
+  <!-- 8 diamond motifs along mid ring -->
+  <g transform="translate(100,100)">
+    <path d="M0,-70 L7,-78 L0,-86 L-7,-78 Z" class="g" stroke-width="1.5"/>
+    <path d="M0,-70 L7,-78 L0,-86 L-7,-78 Z" class="g" stroke-width="1.5" transform="rotate(45)"/>
+    <path d="M0,-70 L7,-78 L0,-86 L-7,-78 Z" class="g" stroke-width="1.5" transform="rotate(90)"/>
+    <path d="M0,-70 L7,-78 L0,-86 L-7,-78 Z" class="g" stroke-width="1.5" transform="rotate(135)"/>
+    <path d="M0,-70 L7,-78 L0,-86 L-7,-78 Z" class="g" stroke-width="1.5" transform="rotate(180)"/>
+    <path d="M0,-70 L7,-78 L0,-86 L-7,-78 Z" class="g" stroke-width="1.5" transform="rotate(225)"/>
+    <path d="M0,-70 L7,-78 L0,-86 L-7,-78 Z" class="g" stroke-width="1.5" transform="rotate(270)"/>
+    <path d="M0,-70 L7,-78 L0,-86 L-7,-78 Z" class="g" stroke-width="1.5" transform="rotate(315)"/>
+  </g>
+
+  <!-- Corner tiny dots connecting tiles -->
+  <circle cx="0"   cy="0"   r="5" class="f"/>
+  <circle cx="200" cy="0"   r="5" class="f"/>
+  <circle cx="0"   cy="200" r="5" class="f"/>
+  <circle cx="200" cy="200" r="5" class="f"/>
+
+  <!-- Cross axis connecting lines -->
+  <line x1="100" y1="0"   x2="100" y2="10"  class="g" stroke-width="2"/>
+  <line x1="100" y1="190" x2="100" y2="200" class="g" stroke-width="2"/>
+  <line x1="0"   y1="100" x2="10"  y2="100" class="g" stroke-width="2"/>
+  <line x1="190" y1="100" x2="200" y2="100" class="g" stroke-width="2"/>
+</svg>
